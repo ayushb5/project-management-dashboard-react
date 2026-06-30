@@ -1,12 +1,12 @@
 import Header from "../components/Header"
 import ProjectList from "../Project/ProjectList"
 
-function Home() {
+function Home({ onSetPage, projects, onSetSelectedProject }) {
     return (
         <>
             {/* Heading */}
             <Header />
-            <ProjectList />
+            <ProjectList onSetPage={onSetPage} projects={projects} onSetSelectedProject={onSetSelectedProject} />
         </>
     )
 }
