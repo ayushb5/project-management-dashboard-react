@@ -1,16 +1,84 @@
-# React + Vite
+# 📂 Project Management Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive **Project & Task Management Dashboard** built with **React.js** using **Functional Components** and **Hooks**. This application allows users to manage projects and their tasks with persistent storage using **localStorage**, without using React Router or third-party state management libraries.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Live Demo
 
-## React Compiler
+🔗 **Live Application:** https://your-live-demo-link.com
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🔗 **GitHub Repository:** https://github.com/your-username/project-management-dashboard
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Features
+
+### 📁 Project Management
+
+- Create Project
+- View all project
+- Edit Project
+- Delete Project
+- List of Projects
+
+### Task Management
+
+- Add new tasks with Title, Due Date, Status(Pending,In Progress, Done)
+- Edit existing tasks
+- Delete tasks
+- List of Tasks
+
+### Task Summary
+
+- Total Tasks
+- Pending Tasks
+- Tasks In Progress
+- Tasks Done
+
+### Validation
+
+- Project title cannot be empty
+- Task title cannot be empty
+- Due date cannot be earlier than today
+- Task status is required
+
+### Storage
+
+- Stores projects and its task inside **localStorage**
+
+---
+
+## Tech Stack
+
+- HTML
+- CSS
+- JavaScript
+- React.js
+- localStorage
+
+---
+
+## 📸 Screenshots
+
+### Home Page (Project List)
+
+<img width="959" height="437" alt="Image" src="https://github.com/user-attachments/assets/990830ac-a523-4633-9c84-a067d36d6f9d" />
+
+### Add Project
+
+<img width="959" height="434" alt="Image" src="https://github.com/user-attachments/assets/3902393a-75cc-408b-a1a7-657c34f78fe0" />
+
+### Task Management
+
+<img width="955" height="435" alt="Image" src="https://github.com/user-attachments/assets/d7c674ad-5b5f-4b3e-9563-79861b09fb12" />
+
+---
+
+## 📸 Live Demo Video
+
+### Desktop View
+
+https://github.com/user-attachments/assets/9be67105-de58-403e-b1d7-3d2445be1edf
+
+### Mobile View
