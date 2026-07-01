@@ -6,9 +6,7 @@ A responsive **Project & Task Management Dashboard** built with **React.js** usi
 
 ## 🚀 Live Demo
 
-🔗 **Live Application:** https://your-live-demo-link.com
-
-🔗 **GitHub Repository:** https://github.com/your-username/project-management-dashboard
+🔗 **Live Application:** https://projectflow-dashboard.netlify.app/
 
 ---
 
