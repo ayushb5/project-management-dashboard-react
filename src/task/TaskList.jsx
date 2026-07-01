@@ -2,11 +2,11 @@ function TaskList({ tasks, allTasks, onEditTask, onDeleteTask, onFilterStatus, o
 
     const getStatusWithBadge = (status) => {
         if (status === "Pending") {
-            return <span className="badge badge-yellow">Pending</span>
+            return <span className="badge badge-yellow text-nowrap">Pending</span>
         } else if (status === "In Progress") {
-            return <span className="badge badge-blue">In Progress</span>
+            return <span className="badge badge-blue text-nowrap">In Progress</span>
         } else if (status === "Done") {
-            return <span className="badge badge-green">Done</span>
+            return <span className="badge badge-green text-nowrap">Done</span>
         }
     }
 
@@ -66,7 +66,7 @@ function TaskList({ tasks, allTasks, onEditTask, onDeleteTask, onFilterStatus, o
                             tasks.map((task, index) => (
                                 <tr key={task.id}>
                                     <td>{index + 1}</td>
-                                    <td>{task.title}</td>
+                                    <td className="text-nowrap">{task.title}</td>
                                     <td className="text-nowrap">{task.dueDate}</td>
                                     <td>{getStatusWithBadge(task.status)}</td>
                                     <td>
