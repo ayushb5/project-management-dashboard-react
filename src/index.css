@@ -42,6 +42,10 @@ p {
     justify-content: center;
 }
 
+.justify-content-end {
+    justify-content: end;
+}
+
 .align-items-center {
     align-items: center;
 }
@@ -146,7 +150,7 @@ th {
     background-color: #c9c7c784;
 }
 
-/* Task Form */
+/* Task */
 .task-form {
     border: 1px solid #ddd;
     padding: 4px 0px 20px 0px;
@@ -176,6 +180,47 @@ th {
 
 .addTaskBtn {
     height: 35px;
+}
+
+.taskSummary {
+    border-radius: 13px;
+    margin: 10px 0px;
+    padding: 5px 0px 25px 6px;
+    background-color: rgb(158, 237, 211);
+}
+
+.form-select {
+    box-sizing: border-box;
+    padding: 4px 8px;
+    font-size: 14px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.form-select option {
+    cursor: pointer;
+}
+
+/* Badges */
+.badge {
+    padding: 6px;
+    border: 1px solid grey;
+    border-radius: 15px;
+    background-color: grey;
+    color: white;
+}
+
+.badge-yellow {
+    background-color: rgb(255, 255, 21);
+    color: black;
+}
+
+.badge-blue {
+    background-color: rgb(12, 94, 235);
+}
+
+.badge-green {
+    background-color: green;
 }
 
 /* Responsive */
