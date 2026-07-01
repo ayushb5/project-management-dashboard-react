@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import Home from "./pages/Home"
-import AddProject from "./Project/AddProject";
 import AddTask from "./task/AddTask";
+import ProjectForm from "./Project/ProjectForm";
 function App() {
   const [projects, setProjects] = useState(() => {
     const savedProjects = JSON.parse(localStorage.getItem("projects"));
@@ -16,8 +16,8 @@ function App() {
 
   return (
     <div className="container">
-      {page === "home" && <Home onSetPage={setPage} projects={projects} onSetSelectedProject={setSelectedProject} />}
-      {page === "add-project" && <AddProject onSetPage={setPage} onSetProjects={setProjects} onSetSelectedProject={setSelectedProject} />}
+      {page === "home" && <Home onSetPage={setPage} projects={projects} onSetProjects={setProjects} onSetSelectedProject={setSelectedProject} />}
+      {page === "add-project" && <ProjectForm projects={projects} onSetPage={setPage} onSetProjects={setProjects} selectedProject={selectedProject} onSetSelectedProject={setSelectedProject} />}
       {page === "add-task" && <AddTask onSetPage={setPage} project={selectedProject} projects={projects} onSetProjects={setProjects} onSetSelectedProject={setSelectedProject} />}
     </div>
   )
