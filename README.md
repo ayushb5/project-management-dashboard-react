@@ -82,3 +82,5 @@ A responsive **Project & Task Management Dashboard** built with **React.js** usi
 https://github.com/user-attachments/assets/9be67105-de58-403e-b1d7-3d2445be1edf
 
 ### Mobile View
+
+https://github.com/user-attachments/assets/2fbd13ee-4173-484f-9c77-bcc62ec883c4
