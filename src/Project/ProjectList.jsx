@@ -1,10 +1,18 @@
-function ProjectList({ onSetPage, projects, onSetSelectedProject }) {
-
+function ProjectList({ onSetPage, projects, onSetProjects, onSetSelectedProject }) {
+    const handleDelete = (projectId) => {
+        const updatedProjects = projects.filter((project) => project.id !== projectId);
+        onSetProjects(updatedProjects);
+        onSetSelectedProject(null);
+        alert("Project deleted successfully.");
+    }
     return (
         <>
             <div className="mx-100 d-flex justify-content-between align-items-center">
                 <h2>Projects</h2>
-                <button className="btn btn-green" onClick={() => onSetPage("add-project")}>+ New Project</button>
+                <button className="btn btn-green" onClick={() => {
+                    onSetSelectedProject(null);
+                    onSetPage("add-project");
+                }}>+ New Project</button>
             </div>
             <div className="table-container">
                 <table>
@@ -33,8 +41,17 @@ function ProjectList({ onSetPage, projects, onSetSelectedProject }) {
                                                 onSetSelectedProject(project);
                                                 onSetPage("add-task");
                                             }}>View</button>
-                                            <button className="btn-small">Edit</button>
-                                            <button className="btn-small">Delete</button>
+                                            <button className="btn-small" onClick={() => {
+                                                onSetSelectedProject(project);
+                                                onSetPage("add-project");
+                                            }}>Edit</button>
+                                            <button className="btn-small" onClick={() => {
+                                                if (window.confirm("Are you sure, you want to delete this project?")) {
+                                                    handleDelete(project.id);
+                                                } else {
+                                                    return;
+                                                }
+                                            }}>Delete</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -42,7 +59,7 @@ function ProjectList({ onSetPage, projects, onSetSelectedProject }) {
                         )}
                     </tbody>
                 </table>
-            </div>
+            </div >
         </>
     )
 }
