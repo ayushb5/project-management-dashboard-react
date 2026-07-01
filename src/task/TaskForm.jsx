@@ -3,17 +3,19 @@ import TaskList from "./TaskList"
 
 function TaskForm({ project, projects, onSetProjects }) {
     const [task, setTask] = useState({
+        id: null,
         title: "",
         dueDate: "",
         status: ""
-    })
+    });
+    const [sortBy, setSortBy] = useState("asc");
+    const [filterStatus, setFilterStatus] = useState("All");
 
     const handleChange = (e) => {
         setTask({ ...task, [e.target.name]: e.target.value });
     }
 
-    const saveTask = () => {
-
+    const handleClick = () => {
         if (!task.title.trim()) {
             alert("Task Title is required");
             return;
@@ -22,33 +24,97 @@ function TaskForm({ project, projects, onSetProjects }) {
             alert("Due Date is required");
             return;
         }
+        const date = new Date();
+        const isodate = date.toISOString().split('T')[0];
+        if (task.dueDate < isodate) {
+            alert("Due date cannot be earlier than today.");
+            return;
+        }
         if (!task.status) {
             alert("Status is required");
             return;
         }
 
-        const newTask = {
-            id: Date.now(),
-            ...task
-        };
+        if (task.id) {
+            const updatedProjects = projects.map((p) =>
+                p.id === project.id ?
+                    {
+                        ...p, tasks: p.tasks.map((t) =>
+                            t.id === task.id ?
+                                task : t)
+                    }
+                    : p
+            );
 
-        const updatedProjects = projects.map((p) =>
-            p.id === project.id ?
-                { ...p, tasks: [...(p.tasks || []), newTask] }
-                : p
-        );
+            onSetProjects(updatedProjects);
+            localStorage.setItem("projects", JSON.stringify(updatedProjects));
 
-        onSetProjects(updatedProjects);
-        localStorage.setItem("projects", JSON.stringify(updatedProjects));
+        } else {
+            const newTask = {
+                ...task,
+                id: Date.now()
+            };
+
+            const updatedProjects = projects.map((p) =>
+                p.id === project.id ?
+                    { ...p, tasks: [...(p.tasks || []), newTask] }
+                    : p
+            );
+
+            onSetProjects(updatedProjects);
+            localStorage.setItem("projects", JSON.stringify(updatedProjects));
+        }
 
         setTask({
+            id: null,
             title: "",
             dueDate: "",
             status: ""
         });
     }
 
+    const handleDeleteTask = (taskId) => {
+        if (taskId) {
+            const updatedProjects = projects.map((p) =>
+                p.id === project.id ?
+                    { ...p, tasks: p.tasks.filter((task) => task.id !== taskId) } : p
+            )
+
+            onSetProjects(updatedProjects);
+            localStorage.setItem("projects", JSON.stringify(updatedProjects));
+
+            if (task.id === taskId) {
+                setTask({
+                    id: null,
+                    title: "",
+                    dueDate: "",
+                    status: ""
+                });
+            }
+
+            alert("Task deleted successfully")
+        }
+    }
+
     const currentProject = projects.find(p => p.id === project.id);
+    const tasks = currentProject?.tasks || [];
+    let processedTasks = [...tasks];
+
+    if (filterStatus !== "All") {
+        processedTasks = processedTasks.filter(
+            (task) => task.status === filterStatus
+        );
+    }
+
+    if (sortBy === "asc") {
+        processedTasks.sort((a, b) =>
+            a.dueDate.localeCompare(b.dueDate)
+        );
+    } else {
+        processedTasks.sort((a, b) =>
+            b.dueDate.localeCompare(a.dueDate)
+        );
+    }
 
     return (
         <>
@@ -67,12 +133,14 @@ function TaskForm({ project, projects, onSetProjects }) {
                         <option value="Done">Done</option>
                     </select>
 
-                    <button className="btn btn-green addTaskBtn" style={{ "marginTop": "0px" }} onClick={saveTask}>Add Task</button>
+                    <button className="btn btn-green addTaskBtn" style={{ "marginTop": "0px" }} onClick={handleClick}>
+                        {task.id ? "Update Task" : "Add Task"}
+                    </button>
 
                 </div>
             </div>
 
-            <TaskList tasks={currentProject?.tasks || []} />
+            <TaskList tasks={processedTasks} allTasks={currentProject?.tasks || []} onEditTask={setTask} onDeleteTask={handleDeleteTask} onFilterStatus={setFilterStatus} onSortBy={setSortBy} filterStatus={filterStatus} sortBy={sortBy} />
         </>
     )
 }
